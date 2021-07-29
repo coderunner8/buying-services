@@ -1,9 +1,13 @@
 package com.fanshawe.shippingservicesproject.model;
 
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(	name = "users",
@@ -38,15 +42,15 @@ public class User {
 
         private String registration;
 
-        public User(String username, String email, String password, String firstname, String lastname) {
-                this.username = username;
-                this.email = email;
-                this.password = password;
-                this.firstname = firstname;
-                this.lastname = lastname;
-        }
+        private String role;
 
-        public User(String username, String email, String password, String firstname, String lastname, String companyname, String registration) {
+        @OneToMany(mappedBy = "userInfo",targetEntity = QuoteRequest.class,cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<QuoteRequest> quoteRequests;
+
+        @OneToMany(mappedBy = "user",targetEntity = QuotePrice.class,cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<QuotePrice> quotePriceList;
+
+        public User( String username, String email, String password, String firstname, String lastname, String companyname, String registration, String role) {
                 this.username = username;
                 this.email = email;
                 this.password = password;
@@ -54,6 +58,16 @@ public class User {
                 this.lastname = lastname;
                 this.companyname = companyname;
                 this.registration = registration;
+                this.role = role;
+        }
+
+        public User( String username, String email, String password, String firstname, String lastname, String role) {
+                this.username = username;
+                this.email = email;
+                this.password = password;
+                this.firstname = firstname;
+                this.lastname = lastname;
+                this.role = role;
         }
 
         public User() {
@@ -124,4 +138,28 @@ public class User {
         public void setRegistration(String registration) {
                 this.registration = registration;
         }
+
+        public String getRole() {
+                return role;
+        }
+
+        public void setRole(String role) {
+                this.role = role;
+        }
+
+        /*public List<QuoteRequest> getQuoteRequests() {
+                return quoteRequests;
+        }
+
+        public void setQuoteRequests(List<QuoteRequest> quoteRequests) {
+                this.quoteRequests = quoteRequests;
+        }
+
+        public List<QuotePrice> getQuotePriceList() {
+                return quotePriceList;
+        }
+
+        public void setQuotePriceList(List<QuotePrice> quotePriceList) {
+                this.quotePriceList = quotePriceList;
+        }*/
 }

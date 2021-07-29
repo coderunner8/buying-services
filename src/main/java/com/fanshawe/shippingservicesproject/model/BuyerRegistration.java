@@ -12,12 +12,19 @@ public class BuyerRegistration {
 
     private String lastname;
 
-    public BuyerRegistration(String username, String password, String email, String firstname, String lastname) {
+    private String role;
+
+    private String company;
+
+    private String registration;
+
+    public BuyerRegistration(String username, String password, String email, String firstname, String lastname, String role) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.role = role;
     }
 
     public String getUsername() {
@@ -58,5 +65,29 @@ public class BuyerRegistration {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(String registration) {
+        this.registration = registration;
     }
 }

@@ -17,16 +17,22 @@ public class UserVerify implements UserDetails {
     private String lastname;
     private String company;
     private String registration;
+    private String role;
+    private User user;
 
     public UserVerify(User user) {
         this.id = user.getId();
-        this.username=getUsername();
+        this.username=user.getUsername();
         this.password=user.getPassword();
         this.email=user.getEmail();
         this.firstname=user.getFirstname();
         this.lastname=user.getLastname();
         this.company=user.getCompanyname();
         this.registration=user.getRegistration();
+        this.role=user.getRole();
+    }
+
+    public UserVerify() {
     }
 
     @Override
@@ -120,4 +126,19 @@ public class UserVerify implements UserDetails {
         this.registration = registration;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
